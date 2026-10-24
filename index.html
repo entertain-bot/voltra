@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folio — Publish your catalog to every site you own</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#FBF8F2;}
+  *{box-sizing:border-box;}
+  a{color:inherit;text-decoration:none;}
+  button,input,select{font-family:inherit;}
+  .fo-link{color:rgba(245,240,230,0.74);transition:color .15s ease;}
+  .fo-link:hover{color:#F5F0E6;}
+  .fo-btn{transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;}
+  .fo-btn:hover{transform:translateY(-2px);}
+  .fo-card{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;}
+  .fo-card:hover{transform:translateY(-4px);box-shadow:0 28px 50px -30px rgba(14,21,18,0.35);}
+  .fo-foot{color:rgba(245,240,230,0.6);transition:color .15s ease;}
+  .fo-foot:hover{color:#F5F0E6;}
+  button:focus-visible,a:focus-visible{outline:2px solid #D9BE8A;outline-offset:3px;}
+  @keyframes fo-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @keyframes fo-rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  .fo-float-a{animation:fo-float 6s ease-in-out infinite;}
+  .fo-float-b{animation:fo-float 7.5s ease-in-out infinite;animation-delay:-2s;}
+  .fo-rise{animation:fo-rise .5s ease both;}
+  @media (max-width: 900px){
+    .fo-hide-m{display:none !important;}
+    .fo-hero-grid{grid-template-columns:1fr !important;}
+    .fo-demo-grid{grid-template-columns:1fr !important;}
+    .fo-bento{grid-template-columns:1fr !important;}
+    .fo-how-grid{grid-template-columns:1fr !important;}
+    .fo-three{grid-template-columns:1fr !important;}
+    .fo-foot-grid{grid-template-columns:1fr 1fr !important;}
+    .fo-phone-wrap{display:none !important;}
+  }
+</style>
+</helmet>
+
+<div style="width:100%;min-width:0;background:#FBF8F2;color:#0E1512;font-family:'Manrope',system-ui,sans-serif;line-height:1.5;overflow-x:hidden;">
+
+  <!-- ================= HERO ================= -->
+  <div style="background:#0F2A22;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-220px;right:-120px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle, rgba(217,190,138,0.22), transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-300px;left:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle, rgba(63,191,143,0.14), transparent 65%);pointer-events:none;"></div>
+
+    <!-- NAV -->
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:26px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="Main.dc.html" style="display:flex;align-items:center;gap:11px;">
+        <div style="width:34px;height:34px;border-radius:10px;border:1px solid rgba(217,190,138,0.55);display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h9a5 5 0 0 1 0 10H9v6" stroke="#D9BE8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:27px;color:#F5F0E6;letter-spacing:-0.01em;">Folio</span>
+      </a>
+      <div class="fo-hide-m" style="display:flex;align-items:center;gap:34px;font-size:14px;font-weight:600;">
+        <a href="#demo" class="fo-link">Live demo</a>
+        <a href="Catalog.dc.html" class="fo-link">Catalog</a>
+        <a href="Publish.dc.html" class="fo-link">Publish</a>
+        <a href="Analytics.dc.html" class="fo-link">Analytics</a>
+        <a href="Pricing.dc.html" class="fo-link">Pricing</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="Login.dc.html" class="fo-hide-m fo-link" style="font-size:14px;font-weight:600;">Sign in</a>
+        <a href="Login.dc.html" class="fo-btn" style="background:#F5F0E6;color:#0E1512;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:700;">Start free</a>
+      </div>
+    </div>
+
+    <!-- HERO BODY -->
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:56px 28px 110px;">
+      <div class="fo-hero-grid" style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center;">
+        <div class="fo-rise">
+          <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:999px;border:1px solid rgba(217,190,138,0.4);font-size:12.5px;font-weight:700;color:#D9BE8A;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:30px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#3FBF8F;"></span>
+            Product publishing platform
+          </div>
+          <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(46px,7vw,92px);line-height:0.98;letter-spacing:-0.025em;margin:0 0 28px;color:#F5F0E6;">
+            One catalog.<br>Every site you <em style="color:#D9BE8A;">own.</em>
+          </h1>
+          <p style="font-size:19px;line-height:1.65;color:rgba(245,240,230,0.74);max-width:540px;margin:0 0 40px;">
+            Folio is the workspace where businesses manage products once and publish them, beautifully, to every storefront, blog and partner portal — with a single embed and live sync.
+          </p>
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:36px;">
+            <a href="Catalog.dc.html" class="fo-btn" style="background:#D9BE8A;color:#0E1512;border-radius:999px;padding:17px 32px;font-size:15.5px;font-weight:800;box-shadow:0 18px 40px -16px rgba(217,190,138,0.6);">Open the workspace</a>
+            <a href="#demo" class="fo-btn" style="border:1px solid rgba(245,240,230,0.28);color:#F5F0E6;border-radius:999px;padding:16px 28px;font-size:15.5px;font-weight:700;">Try the live demo</a>
+          </div>
+          <div style="display:flex;gap:30px;flex-wrap:wrap;font-size:13.5px;color:rgba(245,240,230,0.66);font-weight:600;">
+            <span>Import in minutes</span><span>One embed snippet</span><span>Live sync everywhere</span>
+          </div>
+        </div>
+
+        <!-- PORTRAIT PHONE -->
+        <div class="fo-phone-wrap" style="position:relative;display:flex;justify-content:center;">
+          <div class="fo-float-b" style="position:absolute;left:-10px;top:60px;z-index:3;background:rgba(251,248,242,0.96);border-radius:16px;padding:12px 16px;box-shadow:0 24px 50px -20px rgba(0,0,0,0.5);">
+            <div style="font-size:11px;font-weight:700;color:#5A6A62;letter-spacing:0.06em;text-transform:uppercase;">Published</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:26px;color:#0E1512;">4 sites live</div>
+          </div>
+          <div class="fo-float-a" style="position:absolute;right:-14px;bottom:90px;z-index:3;background:#D9BE8A;border-radius:16px;padding:12px 16px;box-shadow:0 24px 50px -20px rgba(0,0,0,0.5);">
+            <div style="font-size:11px;font-weight:700;color:#3A3220;letter-spacing:0.06em;text-transform:uppercase;">Synced</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:26px;color:#0E1512;">just now</div>
+          </div>
+          <div style="width:300px;height:600px;border-radius:44px;background:#0A1511;border:1px solid rgba(217,190,138,0.35);padding:12px;box-shadow:0 50px 100px -30px rgba(0,0,0,0.7);position:relative;">
+            <div style="width:100%;height:100%;border-radius:34px;background:#FBF8F2;overflow:hidden;display:flex;flex-direction:column;">
+              <div style="padding:20px 20px 12px;display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:#0E1512;">Maison Aubrey</span>
+                <span style="width:30px;height:30px;border-radius:50%;background:#0F2A22;display:flex;align-items:center;justify-content:center;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11L5 7Z" stroke="#F5F0E6" stroke-width="2" stroke-linejoin="round"></path><path d="M9 7a3 3 0 0 1 6 0" stroke="#F5F0E6" stroke-width="2"></path></svg>
+                </span>
+              </div>
+              <div style="margin:0 16px;height:220px;border-radius:22px;background:linear-gradient(160deg,#C9A36B,#7A5A2C);position:relative;display:flex;align-items:flex-end;padding:16px;">
+                <div>
+                  <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;">New season</div>
+                  <div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#FFFFFF;line-height:1.05;">Camel Wool Coat</div>
+                </div>
+              </div>
+              <div style="padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
+                <div>
+                  <div style="height:110px;border-radius:16px;background:linear-gradient(160deg,#3A5A4C,#1B3329);"></div>
+                  <div style="font-size:12.5px;font-weight:700;margin-top:8px;">Forest Knit</div>
+                  <div style="font-size:12px;color:#5A6A62;">$148</div>
+                </div>
+                <div>
+                  <div style="height:110px;border-radius:16px;background:linear-gradient(160deg,#D8CFC0,#A89A82);"></div>
+                  <div style="font-size:12.5px;font-weight:700;margin-top:8px;">Linen Trouser</div>
+                  <div style="font-size:12px;color:#5A6A62;">$132</div>
+                </div>
+              </div>
+              <div style="margin:auto 16px 16px;text-align:center;font-size:10.5px;font-weight:700;color:#5A6A62;letter-spacing:0.08em;text-transform:uppercase;">Powered by Folio</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONNECT ANYWHERE ================= -->
+  <div style="max-width:1240px;margin:0 auto;padding:44px 28px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+    <span style="font-size:12.5px;font-weight:700;color:#5A6A62;letter-spacing:0.1em;text-transform:uppercase;">Publish to</span>
+    <div style="display:flex;align-items:center;gap:44px;flex-wrap:wrap;font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:#2D3B34;">
+      <span>Online stores</span><span>Brand blogs</span><span>Franchise portals</span><span>Wholesale sites</span><span>Landing pages</span>
+    </div>
+  </div>
+
+  <!-- ================= LIVE DEMO ================= -->
+  <div id="demo" style="background:#F2ECDF;border-top:1px solid rgba(14,21,18,0.08);border-bottom:1px solid rgba(14,21,18,0.08);">
+    <div style="max-width:1240px;margin:0 auto;padding:110px 28px;">
+      <div style="max-width:640px;margin:0 0 48px;">
+        <span style="font-size:12.5px;font-weight:800;color:#8A6A33;letter-spacing:0.12em;text-transform:uppercase;">Live demo</span>
+        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.02em;margin:14px 0 14px;">Restyle your storefront in seconds</h2>
+        <p style="font-size:17px;line-height:1.65;color:#4A5A52;margin:0;">This is the widget your customers see. Change the layout, accent and corners — it updates instantly, and so will every site you publish to.</p>
+      </div>
+      <div class="fo-demo-grid" style="display:grid;grid-template-columns:0.7fr 1.3fr;gap:28px;align-items:start;">
+        <!-- Controls -->
+        <div style="background:#FBF8F2;border:1px solid rgba(14,21,18,0.1);border-radius:24px;padding:28px;">
+          <div style="font-size:12px;font-weight:800;color:#5A6A62;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Layout</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;">
+            <sc-for list="{{layoutTabs}}" as="t" hint-placeholder-count="3">
+              <button onClick="{{t.pick}}" class="fo-btn" style="padding:11px 18px;border-radius:999px;border:1px solid {{t.border}};background:{{t.bg}};color:{{t.color}};font-size:13.5px;font-weight:700;cursor:pointer;min-height:44px;">{{t.label}}</button>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#5A6A62;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Accent</div>
+          <div style="display:flex;gap:12px;margin-bottom:26px;">
+            <sc-for list="{{accentSwatches}}" as="a" hint-placeholder-count="4">
+              <button onClick="{{a.pick}}" aria-label="{{a.label}}" class="fo-btn" style="width:44px;height:44px;border-radius:50%;background:{{a.color}};border:3px solid {{a.ring}};cursor:pointer;padding:0;box-shadow:0 0 0 1px rgba(14,21,18,0.18);"></button>
+            </sc-for>
+          </div>
+          <div style="font-size:12px;font-weight:800;color:#5A6A62;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Corners</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;">
+            <sc-for list="{{cornerTabs}}" as="c" hint-placeholder-count="3">
+              <button onClick="{{c.pick}}" class="fo-btn" style="padding:11px 18px;border-radius:999px;border:1px solid {{c.border}};background:{{c.bg}};color:{{c.color}};font-size:13.5px;font-weight:700;cursor:pointer;min-height:44px;">{{c.label}}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;border-top:1px solid rgba(14,21,18,0.1);">
+            <span style="font-size:14.5px;font-weight:700;">Show prices</span>
+            <button onClick="{{togglePrice}}" aria-label="Toggle prices" style="width:54px;height:30px;border-radius:999px;border:none;background:{{priceToggleBg}};cursor:pointer;position:relative;padding:0;">
+              <span style="position:absolute;top:3px;left:{{priceToggleLeft}};width:24px;height:24px;border-radius:50%;background:#FBF8F2;transition:left .18s ease;"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:24px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(14,21,18,0.3);">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;border-bottom:1px solid rgba(14,21,18,0.08);">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:10px;height:10px;border-radius:50%;background:#E3DDCF;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#E3DDCF;"></span>
+              <span style="width:10px;height:10px;border-radius:50%;background:#E3DDCF;"></span>
+              <span style="margin-left:10px;font-size:12px;color:#5A6A62;font-weight:600;">maisonaubrey.com/shop</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7h14l-1.5 12h-11L5 7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M9 7a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="2"></path></svg>
+              Bag ({{cartCount}})
+            </div>
+          </div>
+          <div style="padding:26px;min-height:520px;background:#FBF8F2;">
+            <sc-if value="{{isGrid}}" hint-placeholder-val="{{true}}">
+              <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;">
+                <sc-for list="{{demoProducts}}" as="p" hint-placeholder-count="4">
+                  <div style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.08);border-radius:{{cardRadius}};overflow:hidden;">
+                    <div style="height:150px;background:{{p.swatch}};display:flex;align-items:center;justify-content:center;">
+                      <span style="font-family:'Instrument Serif',Georgia,serif;font-size:44px;color:rgba(255,255,255,0.85);">{{p.mono}}</span>
+                    </div>
+                    <div style="padding:16px;">
+                      <div style="font-size:14.5px;font-weight:700;">{{p.name}}</div>
+                      <div style="font-size:12.5px;color:#5A6A62;margin-bottom:12px;">{{p.cat}}</div>
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                        <span style="font-size:15px;font-weight:800;">{{p.priceLabel}}</span>
+                        <button onClick="{{p.add}}" class="fo-btn" style="background:{{accent}};color:#0E1512;border:none;border-radius:{{btnRadius}};padding:10px 16px;font-size:12.5px;font-weight:800;cursor:pointer;min-height:40px;">Add to bag</button>
+                      </div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{isList}}" hint-placeholder-val="{{false}}">
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <sc-for list="{{demoProducts}}" as="p" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:16px;background:#FFFFFF;border:1px solid rgba(14,21,18,0.08);border-radius:{{cardRadius}};padding:12px;flex-wrap:wrap;">
+                    <div style="width:84px;height:84px;border-radius:{{thumbRadius}};background:{{p.swatch}};flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                      <span style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;color:rgba(255,255,255,0.85);">{{p.mono}}</span>
+                    </div>
+                    <div style="flex:1 1 160px;min-width:0;">
+                      <div style="font-size:15px;font-weight:700;">{{p.name}}</div>
+                      <div style="font-size:12.5px;color:#5A6A62;">{{p.cat}}</div>
+                    </div>
+                    <span style="font-size:15px;font-weight:800;">{{p.priceLabel}}</span>
+                    <button onClick="{{p.add}}" class="fo-btn" style="background:{{accent}};color:#0E1512;border:none;border-radius:{{btnRadius}};padding:10px 18px;font-size:12.5px;font-weight:800;cursor:pointer;min-height:44px;">Add to bag</button>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{isSpot}}" hint-placeholder-val="{{false}}">
+              <div>
+                <div style="height:260px;border-radius:{{cardRadius}};background:{{spotFirst.swatch}};position:relative;display:flex;align-items:flex-end;padding:24px;margin-bottom:18px;">
+                  <div style="flex:1;">
+                    <div style="font-size:11.5px;font-weight:800;color:rgba(255,255,255,0.85);letter-spacing:0.1em;text-transform:uppercase;">Spotlight</div>
+                    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38px;color:#FFFFFF;line-height:1.05;margin-bottom:12px;">{{spotFirst.name}}</div>
+                    <button onClick="{{spotFirst.add}}" class="fo-btn" style="background:{{accent}};color:#0E1512;border:none;border-radius:{{btnRadius}};padding:12px 22px;font-size:13px;font-weight:800;cursor:pointer;min-height:44px;">Add to bag · {{spotFirst.priceLabel}}</button>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;">
+                  <sc-for list="{{spotRest}}" as="p" hint-placeholder-count="3">
+                    <div style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.08);border-radius:{{cardRadius}};overflow:hidden;">
+                      <div style="height:90px;background:{{p.swatch}};"></div>
+                      <div style="padding:12px;">
+                        <div style="font-size:13px;font-weight:700;">{{p.name}}</div>
+                        <button onClick="{{p.add}}" class="fo-btn" style="margin-top:8px;background:{{accent}};color:#0E1512;border:none;border-radius:{{btnRadius}};padding:8px 12px;font-size:11.5px;font-weight:800;cursor:pointer;min-height:36px;">Add · {{p.priceLabel}}</button>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PLATFORM BENTO ================= -->
+  <div style="max-width:1240px;margin:0 auto;padding:120px 28px 60px;">
+    <div style="max-width:660px;margin:0 0 52px;">
+      <span style="font-size:12.5px;font-weight:800;color:#8A6A33;letter-spacing:0.12em;text-transform:uppercase;">The platform</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.02em;margin:14px 0 0;">A real workspace behind every storefront</h2>
+    </div>
+    <div class="fo-bento" style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;">
+      <a href="Catalog.dc.html" class="fo-card" style="grid-row:span 2;background:#0F2A22;color:#F5F0E6;border-radius:28px;padding:36px;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;border:1px solid rgba(14,21,18,0.1);">
+        <div>
+          <div style="font-size:12px;font-weight:800;color:#D9BE8A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">Catalog manager</div>
+          <h3 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:38px;line-height:1.05;margin:0 0 14px;">Add, edit and organise every product</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(245,240,230,0.74);margin:0;max-width:420px;">Search, filter, switch between draft and published, and keep stock and pricing accurate — all from one fast table.</p>
+        </div>
+        <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(245,240,230,0.07);border-radius:14px;padding:12px 16px;font-size:13.5px;font-weight:600;"><span>Camel Wool Coat</span><span style="color:#D9BE8A;">Published</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(245,240,230,0.07);border-radius:14px;padding:12px 16px;font-size:13.5px;font-weight:600;"><span>Forest Knit</span><span style="color:rgba(245,240,230,0.6);">Draft</span></div>
+        </div>
+        <div style="margin-top:22px;font-size:14px;font-weight:800;color:#D9BE8A;">Open catalog →</div>
+      </a>
+      <a href="Publish.dc.html" class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:30px;">
+        <div style="width:46px;height:46px;border-radius:14px;background:#F2ECDF;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z" stroke="#0F2A22" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        </div>
+        <h3 style="font-size:18px;font-weight:800;margin:0 0 8px;">Publish center</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#4A5A52;margin:0 0 16px;">Pick destinations, style the widget, copy the embed, and go live with one click.</p>
+        <span style="font-size:13.5px;font-weight:800;color:#8A6A33;">Open →</span>
+      </a>
+      <a href="Analytics.dc.html" class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:30px;">
+        <div style="width:46px;height:46px;border-radius:14px;background:#F2ECDF;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V10M12 19V5M20 19v-7" stroke="#0F2A22" stroke-width="1.8" stroke-linecap="round"></path></svg>
+        </div>
+        <h3 style="font-size:18px;font-weight:800;margin:0 0 8px;">Analytics</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#4A5A52;margin:0 0 16px;">See views, clicks and conversion per product and per destination site.</p>
+        <span style="font-size:13.5px;font-weight:800;color:#8A6A33;">Open →</span>
+      </a>
+      <div class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:30px;">
+        <div style="width:46px;height:46px;border-radius:14px;background:#F2ECDF;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14.5-4.5M20 12a8 8 0 0 1-14.5 4.5" stroke="#0F2A22" stroke-width="1.8" stroke-linecap="round"></path><path d="M18 3v5h-5M6 21v-5h5" stroke="#0F2A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <h3 style="font-size:18px;font-weight:800;margin:0 0 8px;">Live sync</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#4A5A52;margin:0;">Change a price once and every connected site reflects it in seconds.</p>
+      </div>
+      <div class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:30px;">
+        <div style="width:46px;height:46px;border-radius:14px;background:#F2ECDF;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#0F2A22" stroke-width="1.8"></rect><path d="M3 9h18M9 9v12" stroke="#0F2A22" stroke-width="1.8"></path></svg>
+        </div>
+        <h3 style="font-size:18px;font-weight:800;margin:0 0 8px;">Brandable widgets</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#4A5A52;margin:0;">Grid, list or spotlight layouts with your accent, corners and pricing rules.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <div style="max-width:1240px;margin:0 auto;padding:100px 28px;">
+    <div style="max-width:640px;margin:0 0 48px;">
+      <span style="font-size:12.5px;font-weight:800;color:#8A6A33;letter-spacing:0.12em;text-transform:uppercase;">How it works</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.02em;margin:14px 0 0;">From spreadsheet to storefront in three moves</h2>
+    </div>
+    <div class="fo-how-grid" style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:28px;align-items:stretch;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <sc-for list="{{howSteps}}" as="s" hint-placeholder-count="3">
+          <button onClick="{{s.pick}}" style="text-align:left;background:{{s.bg}};color:{{s.color}};border:1px solid {{s.border}};border-radius:22px;padding:22px 24px;cursor:pointer;display:flex;gap:18px;align-items:flex-start;transition:background .2s ease;">
+            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:1;color:{{s.numColor}};">{{s.num}}</span>
+            <span>
+              <span style="display:block;font-size:17px;font-weight:800;margin-bottom:4px;">{{s.title}}</span>
+              <span style="display:block;font-size:14px;line-height:1.55;color:{{s.subColor}};">{{s.desc}}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="background:#0F2A22;border-radius:28px;padding:36px;min-height:360px;color:#F5F0E6;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-120px;right:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle, rgba(217,190,138,0.2), transparent 65%);"></div>
+        <sc-if value="{{how0}}" hint-placeholder-val="{{true}}">
+          <div style="position:relative;" class="fo-rise">
+            <div style="font-size:12px;font-weight:800;color:#D9BE8A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Import</div>
+            <div style="background:rgba(245,240,230,0.07);border:1px dashed rgba(217,190,138,0.5);border-radius:20px;padding:30px;text-align:center;margin-bottom:18px;">
+              <div style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;">Drop your product sheet</div>
+              <div style="font-size:13.5px;color:rgba(245,240,230,0.68);margin-top:6px;">CSV or spreadsheet · names, prices, stock</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13.5px;font-weight:600;">
+              <div style="display:flex;justify-content:space-between;background:rgba(245,240,230,0.07);padding:11px 16px;border-radius:12px;"><span>Rows detected</span><span style="color:#D9BE8A;">Auto-mapped</span></div>
+              <div style="display:flex;justify-content:space-between;background:rgba(245,240,230,0.07);padding:11px 16px;border-radius:12px;"><span>Duplicates</span><span style="color:#D9BE8A;">Merged</span></div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{how1}}" hint-placeholder-val="{{false}}">
+          <div style="position:relative;" class="fo-rise">
+            <div style="font-size:12px;font-weight:800;color:#D9BE8A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Design</div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px;">
+              <div style="background:#F5F0E6;border-radius:18px;padding:12px;"><div style="height:80px;border-radius:12px;background:linear-gradient(160deg,#C9A36B,#7A5A2C);"></div><div style="height:8px;width:60%;background:#0E1512;border-radius:4px;margin-top:10px;opacity:0.8;"></div></div>
+              <div style="background:#F5F0E6;border-radius:18px;padding:12px;"><div style="height:80px;border-radius:12px;background:linear-gradient(160deg,#3A5A4C,#1B3329);"></div><div style="height:8px;width:48%;background:#0E1512;border-radius:4px;margin-top:10px;opacity:0.8;"></div></div>
+              <div style="background:#F5F0E6;border-radius:18px;padding:12px;"><div style="height:80px;border-radius:12px;background:linear-gradient(160deg,#D8CFC0,#A89A82);"></div><div style="height:8px;width:70%;background:#0E1512;border-radius:4px;margin-top:10px;opacity:0.8;"></div></div>
+            </div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1.1;">Pick a layout, set your accent, match your brand.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{how2}}" hint-placeholder-val="{{false}}">
+          <div style="position:relative;" class="fo-rise">
+            <div style="font-size:12px;font-weight:800;color:#D9BE8A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Publish</div>
+            <pre style="margin:0 0 18px;background:rgba(0,0,0,0.35);border-radius:18px;padding:22px;font-size:13px;line-height:1.7;color:#D9BE8A;white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,Menlo,monospace;">&lt;div id="folio-catalog"&gt;&lt;/div&gt;
+&lt;script src="https://cdn.folio.example/embed.js"
+  data-catalog="your-catalog-id"&gt;&lt;/script&gt;</pre>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1.1;">Paste once. Every future change goes live on its own.</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <div style="background:#0F2A22;color:#F5F0E6;">
+    <div style="max-width:960px;margin:0 auto;padding:110px 28px;text-align:center;">
+      <div style="font-size:12px;font-weight:800;color:#D9BE8A;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:30px;">What teams say</div>
+      <p class="fo-rise" style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3.4vw,42px);line-height:1.2;margin:0 0 34px;min-height:150px;">“{{quote.text}}”</p>
+      <div style="font-size:15px;font-weight:800;">{{quote.name}}</div>
+      <div style="font-size:13px;color:rgba(245,240,230,0.66);margin-bottom:30px;">{{quote.role}}</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
+        <button onClick="{{prevQuote}}" aria-label="Previous quote" class="fo-btn" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,240,230,0.3);background:transparent;color:#F5F0E6;cursor:pointer;font-size:18px;">←</button>
+        <div style="display:flex;gap:8px;">
+          <sc-for list="{{quoteDots}}" as="d" hint-placeholder-count="3">
+            <span style="width:{{d.w}};height:6px;border-radius:3px;background:{{d.bg}};transition:width .2s ease;"></span>
+          </sc-for>
+        </div>
+        <button onClick="{{nextQuote}}" aria-label="Next quote" class="fo-btn" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,240,230,0.3);background:transparent;color:#F5F0E6;cursor:pointer;font-size:18px;">→</button>
+      </div>
+      <div style="font-size:11.5px;color:rgba(245,240,230,0.5);margin-top:34px;">Sample feedback shown for layout — replace with your own customers before launch.</div>
+    </div>
+  </div>
+
+  <!-- ================= PRICING TEASER ================= -->
+  <div style="max-width:1240px;margin:0 auto;padding:110px 28px 40px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px;">
+      <div style="max-width:620px;">
+        <span style="font-size:12.5px;font-weight:800;color:#8A6A33;letter-spacing:0.12em;text-transform:uppercase;">Pricing</span>
+        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.02em;margin:14px 0 0;">Start free. Grow into more sites.</h2>
+      </div>
+      <a href="Pricing.dc.html" class="fo-btn" style="border:1px solid rgba(14,21,18,0.25);border-radius:999px;padding:14px 26px;font-size:14.5px;font-weight:800;">Compare all plans</a>
+    </div>
+    <div class="fo-three" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:34px;">
+        <div style="font-size:15px;font-weight:800;margin-bottom:10px;">Free</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:52px;line-height:1;">$0</div>
+        <p style="font-size:14.5px;color:#4A5A52;margin:14px 0 24px;">25 products, 1 site, basic analytics.</p>
+        <a href="Login.dc.html" class="fo-btn" style="display:block;text-align:center;border:1px solid rgba(14,21,18,0.25);border-radius:999px;padding:13px;font-size:14px;font-weight:800;">Get started</a>
+      </div>
+      <div class="fo-card" style="background:#0F2A22;color:#F5F0E6;border-radius:28px;padding:34px;">
+        <div style="font-size:15px;font-weight:800;margin-bottom:10px;color:#D9BE8A;">Studio</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:52px;line-height:1;">$39<span style="font-size:18px;font-family:'Manrope',sans-serif;color:rgba(245,240,230,0.6);">/mo</span></div>
+        <p style="font-size:14.5px;color:rgba(245,240,230,0.74);margin:14px 0 24px;">500 products, 5 sites, full analytics.</p>
+        <a href="Login.dc.html" class="fo-btn" style="display:block;text-align:center;background:#D9BE8A;color:#0E1512;border-radius:999px;padding:13px;font-size:14px;font-weight:800;">Start free trial</a>
+      </div>
+      <div class="fo-card" style="background:#FFFFFF;border:1px solid rgba(14,21,18,0.1);border-radius:28px;padding:34px;">
+        <div style="font-size:15px;font-weight:800;margin-bottom:10px;">Maison</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:52px;line-height:1;">$119<span style="font-size:18px;font-family:'Manrope',sans-serif;color:#5A6A62;">/mo</span></div>
+        <p style="font-size:14.5px;color:#4A5A52;margin:14px 0 24px;">Unlimited products, 25 sites, priority support.</p>
+        <a href="Login.dc.html" class="fo-btn" style="display:block;text-align:center;border:1px solid rgba(14,21,18,0.25);border-radius:999px;padding:13px;font-size:14px;font-weight:800;">Get started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CTA ================= -->
+  <div style="max-width:1240px;margin:0 auto;padding:60px 28px 110px;">
+    <div style="border-radius:36px;background:#0F2A22;padding:90px 40px;text-align:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%, rgba(217,190,138,0.25), transparent 60%);pointer-events:none;"></div>
+      <div style="position:relative;">
+        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(36px,5.4vw,70px);line-height:1;letter-spacing:-0.02em;margin:0 0 22px;color:#F5F0E6;">Your catalog, <em style="color:#D9BE8A;">everywhere.</em></h2>
+        <p style="font-size:17px;color:rgba(245,240,230,0.74);max-width:480px;margin:0 auto 38px;">Create your workspace, add your first products, and publish today.</p>
+        <a href="Login.dc.html" class="fo-btn" style="display:inline-block;background:#D9BE8A;color:#0E1512;border-radius:999px;padding:18px 38px;font-size:16px;font-weight:800;">Create your workspace</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <div style="background:#0A1511;color:#F5F0E6;">
+    <div style="max-width:1240px;margin:0 auto;padding:70px 28px 40px;">
+      <div class="fo-foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;margin-bottom:56px;">
+        <div>
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;margin-bottom:14px;">Folio</div>
+          <p style="font-size:14px;line-height:1.65;color:rgba(245,240,230,0.6);max-width:260px;margin:0;">The product publishing platform for businesses with more than one place to sell.</p>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#D9BE8A;margin-bottom:18px;">Workspace</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;">
+            <a href="Catalog.dc.html" class="fo-foot">Catalog</a>
+            <a href="Publish.dc.html" class="fo-foot">Publish</a>
+            <a href="Analytics.dc.html" class="fo-foot">Analytics</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#D9BE8A;margin-bottom:18px;">Company</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;">
+            <a href="Pricing.dc.html" class="fo-foot">Pricing</a>
+            <a href="Login.dc.html" class="fo-foot">Sign in</a>
+            <a href="#demo" class="fo-foot">Live demo</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#D9BE8A;margin-bottom:18px;">Legal</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;">
+            <a href="Main.dc.html" class="fo-foot">Privacy</a>
+            <a href="Main.dc.html" class="fo-foot">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(245,240,230,0.12);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(245,240,230,0.5);">
+        <span>© 2026 Folio. All rights reserved.</span>
+        <span>Made for businesses that sell in more than one place.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { layout: 'grid', accent: 0, corners: 1, showPrice: true, cart: 0, how: 0, quote: 0 };
+  }
+
+  renderVals() {
+    const s = this.state;
+
+    const pillStyle = (active) => ({
+      bg: active ? '#0F2A22' : 'transparent',
+      color: active ? '#F5F0E6' : '#0E1512',
+      border: active ? '#0F2A22' : 'rgba(14,21,18,0.25)',
+    });
+
+    const layouts = [['grid', 'Grid'], ['list', 'List'], ['spot', 'Spotlight']];
+    const layoutTabs = layouts.map(([k, label]) => ({
+      label, ...pillStyle(s.layout === k), pick: () => this.setState({ layout: k }),
+    }));
+
+    const accents = [['#D9BE8A', 'Brass'], ['#3FBF8F', 'Emerald'], ['#8C9CFF', 'Periwinkle'], ['#F08BA0', 'Rose']];
+    const accentSwatches = accents.map(([color, label], i) => ({
+      color, label: label + ' accent', ring: s.accent === i ? '#0E1512' : 'transparent', pick: () => this.setState({ accent: i }),
+    }));
+
+    const corners = [['Sharp', '4px', '4px', '3px'], ['Soft', '16px', '12px', '12px'], ['Round', '28px', '999px', '22px']];
+    const cornerTabs = corners.map(([label], i) => ({
+      label, ...pillStyle(s.corners === i), pick: () => this.setState({ corners: i }),
+    }));
+    const [, cardRadius, btnRadius, thumbRadius] = corners[s.corners];
+
+    const base = [
+      { name: 'Camel Wool Coat', cat: 'Outerwear', price: 340, swatch: 'linear-gradient(160deg,#C9A36B,#7A5A2C)' },
+      { name: 'Forest Knit', cat: 'Knitwear', price: 148, swatch: 'linear-gradient(160deg,#3A5A4C,#1B3329)' },
+      { name: 'Linen Trouser', cat: 'Tailoring', price: 132, swatch: 'linear-gradient(160deg,#B8AD97,#7E7058)' },
+      { name: 'Ink Silk Scarf', cat: 'Accessories', price: 96, swatch: 'linear-gradient(160deg,#4B5C86,#222C4B)' },
+    ];
+    const demoProducts = base.map((p) => ({
+      ...p,
+      mono: p.name.split(' ').map((w) => w[0]).slice(0, 2).join(''),
+      priceLabel: s.showPrice ? '$' + p.price : 'Inquire',
+      add: () => this.setState({ cart: this.state.cart + 1 }),
+    }));
+
+    const howList = [
+      ['01', 'Import your products', 'Upload a sheet or add items one by one.'],
+      ['02', 'Design the widget', 'Choose layout, accent and corners.'],
+      ['03', 'Publish everywhere', 'Paste one snippet and go live.'],
+    ];
+    const howSteps = howList.map(([num, title, desc], i) => {
+      const on = s.how === i;
+      return {
+        num, title, desc,
+        bg: on ? '#0F2A22' : '#FFFFFF',
+        color: on ? '#F5F0E6' : '#0E1512',
+        border: on ? '#0F2A22' : 'rgba(14,21,18,0.1)',
+        numColor: on ? '#D9BE8A' : '#8A6A33',
+        subColor: on ? 'rgba(245,240,230,0.74)' : '#4A5A52',
+        pick: () => this.setState({ how: i }),
+      };
+    });
+
+    const quotes = [
+      { text: 'We used to update prices on five websites by hand. Now we change it once and it is live everywhere.', name: 'Amara Okafor', role: 'Operations lead, retail brand' },
+      { text: 'The widget matches our site so closely that customers never notice it is a separate tool.', name: 'Daniel Mercer', role: 'Founder, home goods studio' },
+      { text: 'Our franchise partners finally show the same catalog as head office, without any developer time.', name: 'Lina Haddad', role: 'Digital manager, hospitality group' },
+    ];
+    const q = quotes[s.quote];
+    const quoteDots = quotes.map((_, i) => ({ w: s.quote === i ? '28px' : '8px', bg: s.quote === i ? '#D9BE8A' : 'rgba(245,240,230,0.3)' }));
+
+    return {
+      layoutTabs, accentSwatches, cornerTabs, cardRadius, btnRadius, thumbRadius,
+      accent: accents[s.accent][0],
+      isGrid: s.layout === 'grid', isList: s.layout === 'list', isSpot: s.layout === 'spot',
+      demoProducts, spotFirst: demoProducts[0], spotRest: demoProducts.slice(1),
+      cartCount: s.cart,
+      priceToggleBg: s.showPrice ? '#0F2A22' : 'rgba(14,21,18,0.25)',
+      priceToggleLeft: s.showPrice ? '27px' : '3px',
+      togglePrice: () => this.setState({ showPrice: !this.state.showPrice }),
+      howSteps, how0: s.how === 0, how1: s.how === 1, how2: s.how === 2,
+      quote: q, quoteDots,
+      prevQuote: () => this.setState({ quote: (this.state.quote + 2) % 3 }),
+      nextQuote: () => this.setState({ quote: (this.state.quote + 1) % 3 }),
+    };
+  }
+}
+</script>
+</body>
+</html>
